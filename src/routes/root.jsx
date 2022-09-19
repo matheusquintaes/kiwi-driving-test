@@ -1,10 +1,10 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link } from 'react-router-dom'
 
 export default function Root() {
   return (
     <>
       <div id="sidebar">
-        <h1>React Router Contacts</h1>
+        <h1 className="text-3xl font-bold underline">Hello world!</h1>
         <div>
           <form id="search-form" role="search">
             <input
@@ -36,5 +36,5 @@ export default function Root() {
         <Outlet />
       </div>
     </>
-  );
+  )
 }
