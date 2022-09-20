@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 function Header() {
   return (
-    <div className="p-4 bg-yellow-50 flex items-center">
+    <div className="bg-yellow-50 flex items-center">
       <Link to={`/`}>
         <img className="mr-4" src={'./src/assets/logo.png'} alt="logo" />
       </Link>
