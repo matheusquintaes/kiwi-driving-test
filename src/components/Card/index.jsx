@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 function Card({ title, featured, description }) {
   return (
@@ -13,6 +14,11 @@ function Card({ title, featured, description }) {
           <div className="p-5">
             <h3 className="text-gray-900 font-bold text-xl mb-2">{title}</h3>
             <p className="font-normal text-gray-800 mb-4">{description}</p>
+
+            <Link
+              className="text-white bg-teal-500 hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-3 py-2 text-center inline-flex items-center"
+              to={`questions/${title}`}
+            >{`Start ${title} Questions`}</Link>
           </div>
         </div>
       ) : (
@@ -26,6 +32,10 @@ function Card({ title, featured, description }) {
             <div>
               <h3 className="text-gray-900 font-bold text-xl">{title}</h3>
               <p className="text-xs font-light text-gray-600">{description}</p>
+              <Link
+                className="text-white bg-teal-500 hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-3 py-2 text-center inline-flex items-center"
+                to={`questions/${title}`}
+              >{`Start ${title} Questions`}</Link>
             </div>
           </div>
         </div>

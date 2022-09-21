@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.11",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
     "localforage": "^1.10.0",

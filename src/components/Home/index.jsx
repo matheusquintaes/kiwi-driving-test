@@ -1,22 +1,22 @@
-import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import client from '../../graphql/client'
 import { GET_SUBJECTS } from '../../graphql/queries'
+import { AppStateContext } from '../../contexts/appStateContext'
 
 import Card from '../Card'
 
 function Home() {
+  const { setGameState } = useContext(AppStateContext)
   const [subjects, setSubjects] = useState(null)
 
   useEffect(() => {
-    const fetchQuestions = async () => {
+    const fetchSubjects = async () => {
       const { subjects } = await client.request(GET_SUBJECTS)
-
-      console.log(subjects)
       setSubjects(subjects)
+      setGameState('home')
     }
 
-    fetchQuestions()
+    fetchSubjects()
   }, [])
 
   return (
@@ -26,17 +26,14 @@ function Home() {
           Free Road Code Quiz
         </h3>
         {subjects &&
-          subjects.map(({ title, featured, description }) => (
+          subjects.map(({ id, title, featured, description }) => (
             <Card
-              key="title"
+              key={id}
               title={title}
               featured={featured}
               description={description}
             />
           ))}
-
-        <Link to={`questions/car`}>Car</Link>
-        <Link to={`questions/behaviour`}>Behaviour</Link>
       </div>
     </div>
   )
