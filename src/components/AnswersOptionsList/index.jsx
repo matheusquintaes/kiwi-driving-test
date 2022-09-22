@@ -55,7 +55,7 @@ function AnswersOptionsList({
       userSelectedOptionSingle.id === answerOptions.id &&
       answerOptions.isCorrect
     ) {
-      style = 'bg-green-200 border-4 border-green-400'
+      style = 'bg-green-200 border-4 border-green-400 drop-shadow-md scale-105'
       return style
     }
 
@@ -63,12 +63,12 @@ function AnswersOptionsList({
       userSubmittedAnswer.submited === true &&
       userSelectedOptionSingle.id === answerOptions.id
     ) {
-      style = 'bg-red-200 border-2 border-red-400'
+      style = 'bg-red-200 border-4 border-red-400 drop-shadow-md scale-105'
       return style
     }
 
     if (userSubmittedAnswer.submited === true && answerOptions.isCorrect) {
-      style = 'bg-green-200 border-green-400'
+      style = 'bg-green-100 border-transparent'
       return style
     }
 
@@ -76,11 +76,12 @@ function AnswersOptionsList({
       !userSubmittedAnswer.submited === true &&
       userSelectedOptionSingle.id === answerOptions.id
     ) {
-      style = 'bg-yellow-200 border-4 border-yellow-500'
+      style =
+        'bg-yellow-200 border-4 border-yellow-500 drop-shadow-md scale-105'
       return style
     }
 
-    style = 'bg-white'
+    style = 'bg-white border-transparent'
     return style
   }
 
@@ -99,12 +100,12 @@ function AnswersOptionsList({
       arrayIndexSelected.includes(index) &&
       answerOptions.isCorrect
     ) {
-      style = 'bg-green-200 border-4 border-green-400'
+      style = 'bg-green-200 border-4 border-green-400 drop-shadow-md scale-105'
       return style
     }
 
     if (userSubmittedAnswer.submited === true && answerOptions.isCorrect) {
-      style = 'bg-green-200'
+      style = 'bg-green-100 border-transparent'
       return style
     }
 
@@ -112,15 +113,16 @@ function AnswersOptionsList({
       userSubmittedAnswer.submited === true &&
       arrayIndexSelected.includes(index)
     ) {
-      style = 'bg-red-200 border-4 border-red-400'
+      style = 'bg-red-200 border-4 border-red-400 drop-shadow-md scale-105'
       return style
     }
     if (arrayIndexSelected.includes(index)) {
-      style = 'bg-yellow-200 border-4 border-yellow-500'
+      style =
+        'bg-yellow-200 border-4 border-yellow-500 drop-shadow-md scale-105'
       return style
     }
 
-    style = 'bg-white'
+    style = 'bg-white border-transparent'
     return style
   }
 
@@ -132,7 +134,7 @@ function AnswersOptionsList({
               <li className="flex" key={index}>
                 <label
                   className={
-                    'shadow-md rounded-lg mb-4 p-2 w-full border-4 ' +
+                    'rounded-lg mb-4 p-2 w-full border-4 ' +
                     labelHighligthMultiple(answerOption, index)
                   }
                 >

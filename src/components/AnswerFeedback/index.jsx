@@ -29,7 +29,7 @@ function AnswerFeedback({
 
   function AnswerFeedbackSingle() {
     return (
-      <div className="bg-white shadow-md rounded-lg p-4">
+      <div className="bg-white shadow-md rounded-lg p-4 mb-4">
         {userSubmittedAnswerCorrect ? (
           <div>
             <div className="flex items-center mb-2">
@@ -56,7 +56,7 @@ function AnswerFeedback({
             </div>
             <p className="text-xs mb-2">
               You selected
-              <b>{showLetterOption(userSelectedOptionSingle.index)}</b>, the
+              <b> {showLetterOption(userSelectedOptionSingle.index)}</b>, the
               correct answer was
               <b> {showCorrectAnswerSingle()}</b>
             </p>
@@ -86,7 +86,7 @@ function AnswerFeedback({
 
   function AnswerFeedbackMultiple() {
     return (
-      <div className="bg-white shadow-md rounded-lg p-4">
+      <div className="bg-white shadow-md rounded-lg p-4 mb-4">
         {userSubmittedAnswerCorrect ? (
           <div>
             <div className="flex items-center mb-2">
