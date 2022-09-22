@@ -18,7 +18,9 @@ function Questions() {
     useContext(AppStateContext)
 
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [userSelectedOption, setUserSelectedOption] = useState([])
+  const [userSelectedOptionSingle, setUserSelectedOptionSingle] = useState({})
+  const [userSelectedOptionsMultiple, setUserSelectedOptionsMultiple] =
+    useState([])
   const [userSubmittedAnswer, setUserSubmittedAnswer] = useState({
     submited: false,
     correct: false
@@ -40,7 +42,10 @@ function Questions() {
       )
 
       if (
-        checkUserAnswersWithCorrectAnswers(correctAnswers, userSelectedOption)
+        checkUserAnswersWithCorrectAnswers(
+          correctAnswers,
+          userSelectedOptionsMultiple
+        )
       ) {
         setUserSubmittedAnswer({ submited: true, correct: true })
         setScore(score + 1)
@@ -50,7 +55,7 @@ function Questions() {
     }
 
     function handleSimpleQuestion() {
-      if (userSelectedOption[0].isCorrect) {
+      if (userSelectedOptionSingle.isCorrect) {
         setUserSubmittedAnswer({ submited: true, correct: true })
         setScore(score + 1)
       } else {
@@ -60,6 +65,9 @@ function Questions() {
   }
 
   const handleNextButtonClick = () => {
+    const isMultipleAsnwer = questions[currentQuestion].multipleAnswer
+    isMultipleAsnwer && setUserSelectedOptionsMultiple([])
+    !isMultipleAsnwer && setUserSelectedOptionSingle({})
     setUserSubmittedAnswer({
       submited: false,
       correct: false
@@ -69,6 +77,16 @@ function Questions() {
       setCurrentQuestion(nextQuestion)
     } else {
       setGameState('finished')
+    }
+  }
+
+  const showSubmitButton = () => {
+    if (
+      (Object.keys(userSelectedOptionSingle).length > 0 ||
+        userSelectedOptionsMultiple.length) &&
+      userSubmittedAnswer.submited === false
+    ) {
+      return true
     }
   }
   useEffect(() => {
@@ -109,28 +127,30 @@ function Questions() {
               <AnswersOptionsList
                 questions={questions}
                 currentQuestion={currentQuestion}
-                userSelectedOption={userSelectedOption}
-                setUserSelectedOption={setUserSelectedOption}
+                userSelectedOptionsMultiple={userSelectedOptionsMultiple}
+                setUserSelectedOptionsMultiple={setUserSelectedOptionsMultiple}
                 userSubmittedAnswer={userSubmittedAnswer}
+                userSelectedOptionSingle={userSelectedOptionSingle}
+                setUserSelectedOptionSingle={setUserSelectedOptionSingle}
               />
 
               {userSubmittedAnswer.submited === true && (
                 <AnswerFeedback
                   questions={questions}
                   currentQuestion={currentQuestion}
-                  userSelectedOption={userSelectedOption}
+                  userSelectedOptionsMultiple={userSelectedOptionsMultiple}
+                  userSelectedOptionSingle={userSelectedOptionSingle}
                   userSubmittedAnswerCorrect={userSubmittedAnswer.correct}
                 />
               )}
-              {userSelectedOption.length > 0 &&
-                userSubmittedAnswer.submited === false && (
-                  <button
-                    onClick={() => handleSubmitButtonClick()}
-                    className="text-white bg-teal-500 hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-3 py-2 text-center inline-flex items-center"
-                  >
-                    Submit
-                  </button>
-                )}
+              {showSubmitButton() && (
+                <button
+                  onClick={() => handleSubmitButtonClick()}
+                  className="text-white bg-teal-500 hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-3 py-2 text-center inline-flex items-center"
+                >
+                  Submit
+                </button>
+              )}
               {userSubmittedAnswer.submited === true && (
                 <button
                   onClick={() => handleNextButtonClick()}

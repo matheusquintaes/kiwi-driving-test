@@ -6,7 +6,7 @@ import { AppStateContext } from '../../contexts/appStateContext'
 import Card from '../Card'
 
 function Home() {
-  const { setGameState } = useContext(AppStateContext)
+  const { setGameState, setScore } = useContext(AppStateContext)
   const [subjects, setSubjects] = useState(null)
 
   useEffect(() => {
@@ -14,6 +14,7 @@ function Home() {
       const { subjects } = await client.request(GET_SUBJECTS)
       setSubjects(subjects)
       setGameState('home')
+      setScore(0)
     }
 
     fetchSubjects()

@@ -1,4 +1,3 @@
-import React from 'react'
 // import { useState } from 'react'
 import { showLetterOption } from '../../utils/index'
 import PropTypes from 'prop-types'
@@ -6,36 +5,40 @@ import PropTypes from 'prop-types'
 function AnswersOptionsList({
   questions,
   currentQuestion,
-  userSelectedOption,
-  setUserSelectedOption,
+  userSelectedOptionSingle,
+  setUserSelectedOptionSingle,
+  userSelectedOptionsMultiple,
+  setUserSelectedOptionsMultiple,
   userSubmittedAnswer
 }) {
   const isMultipleAsnwer = questions[currentQuestion].multipleAnswer
 
   const handleAnswerInputClick = (answerOption, index) => {
-    setUserSelectedOption([
-      {
-        id: answerOption.id,
-        index: index,
-        isCorrect: answerOption.isCorrect
-      }
-    ])
+    setUserSelectedOptionSingle({
+      id: answerOption.id,
+      index: index,
+      isCorrect: answerOption.isCorrect
+    })
   }
 
   const handleMultipleAnswerInputClick = (answerOption, index) => {
     /* check if this answer selected contains in the array userSelectedOption */
-    if (userSelectedOption.filter((e) => e.id === answerOption.id).length > 0) {
+    if (
+      userSelectedOptionsMultiple.filter((e) => e.id === answerOption.id)
+        .length > 0
+    ) {
       /* remove answer selected from userSelectedOption using hook */
-      return setUserSelectedOption((userSelectedOption) =>
+      return setUserSelectedOptionsMultiple((userSelectedOption) =>
         userSelectedOption.filter((item) => item.id != answerOption.id)
       )
     }
     /* check if this answer selected not contains in the array userSelectedOption */
-    if (userSelectedOption.filter((item) => item !== answerOption.id)) {
+    if (
+      userSelectedOptionsMultiple.filter((item) => item !== answerOption.id)
+    ) {
       /* add answer selected in userSelectedOption using hook */
-
-      return setUserSelectedOption([
-        ...userSelectedOption,
+      return setUserSelectedOptionsMultiple([
+        ...userSelectedOptionsMultiple,
         {
           id: answerOption.id,
           index: index
@@ -44,13 +47,95 @@ function AnswersOptionsList({
     }
   }
 
+  const labelHighligthSingle = (answerOptions) => {
+    let style = ''
+
+    if (
+      userSubmittedAnswer.submited === true &&
+      userSelectedOptionSingle.id === answerOptions.id &&
+      answerOptions.isCorrect
+    ) {
+      style = 'bg-green-200 border-4 border-green-400'
+      return style
+    }
+
+    if (
+      userSubmittedAnswer.submited === true &&
+      userSelectedOptionSingle.id === answerOptions.id
+    ) {
+      style = 'bg-red-200 border-2 border-red-400'
+      return style
+    }
+
+    if (userSubmittedAnswer.submited === true && answerOptions.isCorrect) {
+      style = 'bg-green-200 border-green-400'
+      return style
+    }
+
+    if (
+      !userSubmittedAnswer.submited === true &&
+      userSelectedOptionSingle.id === answerOptions.id
+    ) {
+      style = 'bg-yellow-200 border-4 border-yellow-500'
+      return style
+    }
+
+    style = 'bg-white'
+    return style
+  }
+
+  const labelHighligthMultiple = (answerOptions, index) => {
+    let style = ''
+    let arrayIndexSelected = []
+
+    if (userSelectedOptionsMultiple.length > 0) {
+      userSelectedOptionsMultiple.forEach((option) => {
+        arrayIndexSelected.push(option.index)
+      })
+    }
+
+    if (
+      userSubmittedAnswer.submited === true &&
+      arrayIndexSelected.includes(index) &&
+      answerOptions.isCorrect
+    ) {
+      style = 'bg-green-200 border-4 border-green-400'
+      return style
+    }
+
+    if (userSubmittedAnswer.submited === true && answerOptions.isCorrect) {
+      style = 'bg-green-200'
+      return style
+    }
+
+    if (
+      userSubmittedAnswer.submited === true &&
+      arrayIndexSelected.includes(index)
+    ) {
+      style = 'bg-red-200 border-4 border-red-400'
+      return style
+    }
+    if (arrayIndexSelected.includes(index)) {
+      style = 'bg-yellow-200 border-4 border-yellow-500'
+      return style
+    }
+
+    style = 'bg-white'
+    return style
+  }
+
   return (
     <ul>
       {isMultipleAsnwer === true
         ? questions[currentQuestion].answerOptions.map(
             (answerOption, index) => (
               <li className="flex" key={index}>
-                <label className="shadow-md rounded-lg mb-4 p-2 w-full border-2 ">
+                <label
+                  className={
+                    'shadow-md rounded-lg mb-4 p-2 w-full border-4 ' +
+                    labelHighligthMultiple(answerOption, index)
+                  }
+                >
                   <input
                     className="h-4 w-4 border mt-1 align-top mr-4"
                     type="checkbox"
@@ -69,7 +154,12 @@ function AnswersOptionsList({
         : questions[currentQuestion].answerOptions.map(
             (answerOptions, index) => (
               <li className="flex" key={answerOptions.id}>
-                <label className="shadow-md rounded-lg mb-4 p-2 w-full border-2">
+                <label
+                  className={
+                    'shadow-md rounded-lg mb-4 p-2 w-full border-4 ' +
+                    labelHighligthSingle(answerOptions, index)
+                  }
+                >
                   <input
                     className="h-4 w-4 border mt-1 align-top mr-4"
                     type="radio"
@@ -94,7 +184,10 @@ AnswersOptionsList.propTypes = {
   currentQuestion: PropTypes.number,
   questions: PropTypes.array,
   userSelectedOption: PropTypes.array,
-  setUserSelectedOption: PropTypes.func,
+  userSelectedOptionSingle: PropTypes.object,
+  setUserSelectedOptionSingle: PropTypes.func,
+  userSelectedOptionsMultiple: PropTypes.array,
+  setUserSelectedOptionsMultiple: PropTypes.func,
   userSubmittedAnswer: PropTypes.object
 }
 export default AnswersOptionsList

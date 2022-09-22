@@ -6,14 +6,16 @@ import { showLetterOption } from '../../utils'
 function AnswerFeedback({
   questions,
   currentQuestion,
-  userSelectedOption,
+  userSelectedOptionSingle,
+  userSelectedOptionsMultiple,
   userSubmittedAnswerCorrect
 }) {
   const isMultipleAnswer = questions[currentQuestion].multipleAnswer
 
-  const sortedUserSelectedOptions = userSelectedOption.sort(
+  const sortedUserSelectedOptions = userSelectedOptionsMultiple.sort(
     (a, b) => a.index - b.index
   )
+
   function showCorrectAnswerSingle() {
     function getAnswerByType(answerOptions) {
       return answerOptions.isCorrect === true
@@ -37,8 +39,8 @@ function AnswerFeedback({
               </p>
             </div>
             <p className="text-xs mb-2">
-              You selected{' '}
-              <b>{showLetterOption(userSelectedOption[0].index)}</b>
+              You selected
+              <b> {showLetterOption(userSelectedOptionSingle.index)}</b>
             </p>
             <p className="text-base">
               {questions[currentQuestion].resultHelper}
@@ -53,8 +55,8 @@ function AnswerFeedback({
               </p>
             </div>
             <p className="text-xs mb-2">
-              You selected{' '}
-              <b>{showLetterOption(userSelectedOption[0].index)}</b>, the
+              You selected
+              <b>{showLetterOption(userSelectedOptionSingle.index)}</b>, the
               correct answer was
               <b> {showCorrectAnswerSingle()}</b>
             </p>
@@ -94,7 +96,7 @@ function AnswerFeedback({
               </p>
             </div>
             <p className="text-xs mb-2">
-              You selected
+              You selected {console.log(userSelectedOptionsMultiple)}
               {sortedUserSelectedOptions.map((options, key) => (
                 <b key={key}> {showLetterOption(options.index)} </b>
               ))}
@@ -112,6 +114,7 @@ function AnswerFeedback({
               </p>
             </div>
             <p className="text-sm mb-2">
+              You selected {console.log(userSelectedOptionsMultiple)}
               {sortedUserSelectedOptions.map((options, key) => (
                 <b key={key}> {showLetterOption(options.index)} </b>
               ))}
@@ -137,7 +140,8 @@ function AnswerFeedback({
 AnswerFeedback.propTypes = {
   currentQuestion: PropTypes.number,
   questions: PropTypes.array,
-  userSelectedOption: PropTypes.array,
+  userSelectedOptionSingle: PropTypes.object,
+  userSelectedOptionsMultiple: PropTypes.array,
   userSubmittedAnswerCorrect: PropTypes.bool
 }
 
