@@ -1,53 +1,34 @@
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-function Card({ title, featured, description }) {
+function Card({ title, description, image }) {
   return (
     <>
-      {featured ? (
+      <div className="">
         <div className="bg-white shadow-md rounded-lg mb-8">
           <img
-            className="rounded-t-lg md:h-1/4"
-            src="https://flowbite.com/docs/images/blog/image-1.jpg"
-            alt=""
+            className="h-32 w-full object-cover rounded-t-lg"
+            src={image.url}
           />
           <div className="p-5">
-            <h3 className="text-gray-900 font-bold text-xl mb-2">{title}</h3>
-            <p className="font-normal text-gray-800 mb-4">{description}</p>
-
-            <Link
-              className="text-white bg-teal-500 hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-3 py-2 text-center inline-flex items-center"
-              to={`questions/${title}`}
-            >{`Start ${title} Questions`}</Link>
+            <h3 className="text-gray-900 font-bold text-lg mb-2">{title}</h3>
+            <p className="text-base text-gray-700 mb-4 lg:h-24 min-h-full">
+              {description}
+            </p>
+            <Link className="btn-primary" to={`questions/${title}`}>
+              Start Now
+            </Link>
           </div>
         </div>
-      ) : (
-        <div className="bg-white shadow-md rounded-lg mb-8 flex items-center">
-          <img
-            className="rounded-l-lg w-28 h-full bg-center bg-no-repeat bg-cover"
-            src="https://flowbite.com/docs/images/blog/image-1.jpg"
-            alt=""
-          />
-          <div className="flex justify-between w-full p-3">
-            <div>
-              <h3 className="text-gray-900 font-bold text-xl">{title}</h3>
-              <p className="text-xs font-light text-gray-600">{description}</p>
-              <Link
-                className="text-white bg-teal-500 hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-3 py-2 text-center inline-flex items-center"
-                to={`questions/${title}`}
-              >{`Start ${title} Questions`}</Link>
-            </div>
-          </div>
-        </div>
-      )}
+      </div>
     </>
   )
 }
 
 Card.propTypes = {
   title: PropTypes.string,
-  featured: PropTypes.bool,
-  description: PropTypes.string
+  description: PropTypes.string,
+  image: PropTypes.object
 }
 
 export default Card

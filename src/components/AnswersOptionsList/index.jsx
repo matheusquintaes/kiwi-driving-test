@@ -55,7 +55,7 @@ function AnswersOptionsList({
       userSelectedOptionSingle.id === answerOptions.id &&
       answerOptions.isCorrect
     ) {
-      style = 'bg-green-200 border-4 border-green-400 drop-shadow-md scale-105'
+      style = 'bg-green-200 border-2 border-green-400 drop-shadow-md '
       return style
     }
 
@@ -63,7 +63,7 @@ function AnswersOptionsList({
       userSubmittedAnswer.submited === true &&
       userSelectedOptionSingle.id === answerOptions.id
     ) {
-      style = 'bg-red-200 border-4 border-red-400 drop-shadow-md scale-105'
+      style = 'bg-red-200 border-2 border-red-400 drop-shadow-md '
       return style
     }
 
@@ -76,8 +76,7 @@ function AnswersOptionsList({
       !userSubmittedAnswer.submited === true &&
       userSelectedOptionSingle.id === answerOptions.id
     ) {
-      style =
-        'bg-yellow-200 border-4 border-yellow-500 drop-shadow-md scale-105'
+      style = 'bg-yellow-200 border-2 border-yellow-500 drop-shadow-md '
       return style
     }
 
@@ -100,7 +99,7 @@ function AnswersOptionsList({
       arrayIndexSelected.includes(index) &&
       answerOptions.isCorrect
     ) {
-      style = 'bg-green-200 border-4 border-green-400 drop-shadow-md scale-105'
+      style = 'bg-green-200 border-2 border-green-400 drop-shadow-md'
       return style
     }
 
@@ -113,12 +112,11 @@ function AnswersOptionsList({
       userSubmittedAnswer.submited === true &&
       arrayIndexSelected.includes(index)
     ) {
-      style = 'bg-red-200 border-4 border-red-400 drop-shadow-md scale-105'
+      style = 'bg-red-200 border-2 border-red-400 drop-shadow-md'
       return style
     }
     if (arrayIndexSelected.includes(index)) {
-      style =
-        'bg-yellow-200 border-4 border-yellow-500 drop-shadow-md scale-105'
+      style = 'bg-yellow-200 border-2 border-yellow-500 drop-shadow-md'
       return style
     }
 
@@ -134,7 +132,7 @@ function AnswersOptionsList({
               <li className="flex" key={index}>
                 <label
                   className={
-                    'rounded-lg mb-4 p-2 w-full border-4 ' +
+                    'drop-shadow-md rounded-lg mb-4 p-2 w-full border-2 cursor-pointer ' +
                     labelHighligthMultiple(answerOption, index)
                   }
                 >
@@ -158,7 +156,7 @@ function AnswersOptionsList({
               <li className="flex" key={answerOptions.id}>
                 <label
                   className={
-                    'shadow-md rounded-lg mb-4 p-2 w-full border-4 ' +
+                    'text-gray-900 drop-shadow-md rounded-lg mb-4 p-2 w-full border-2 cursor-pointer ' +
                     labelHighligthSingle(answerOptions, index)
                   }
                 >

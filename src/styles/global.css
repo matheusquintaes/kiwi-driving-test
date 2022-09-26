@@ -3,5 +3,12 @@
 @tailwind utilities;
 
 body {
-  @apply bg-yellow-50;
+  @apply bg-gray-50;
+}
+
+@layer components {
+  .btn-primary {
+    @apply text-gray-900 text-sm bg-yellow-400 hover:bg-yellow-300 focus:ring-4 focus:ring-blue-300 font-bold rounded-full
+    px-6 py-3 text-center inline-flex items-center;
+  }
 }

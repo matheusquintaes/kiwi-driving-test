@@ -7,6 +7,9 @@ export const GET_SUBJECTS = gql`
       title
       featured
       description
+      image {
+        url
+      }
     }
   }
 `

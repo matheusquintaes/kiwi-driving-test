@@ -34,9 +34,7 @@ function AnswerFeedback({
           <div>
             <div className="flex items-center mb-2">
               <CheckCircleIcon className="h-8 w-8 text-green-500 mr-2" />
-              <p className="text-base mr-2">
-                <b className=" font-bold">Correct.</b>
-              </p>
+              <p className="text-base mr-2 font-bold text-green-500">Correct</p>
             </div>
             <p className="text-xs mb-2">
               You selected
@@ -50,17 +48,15 @@ function AnswerFeedback({
           <div>
             <div className="flex items-center mb-2">
               <XCircleIcon className="h-8 w-8 text-red-500 mr-2" />
-              <p className="text-base mr-2">
-                <b className=" font-bold">Incorrect.</b>
-              </p>
+              <p className="text-base mr-2 font-bold text-red-500">Incorrect</p>
             </div>
-            <p className="text-xs mb-2">
+            <p className="text-xs mb-2 text-gray-900 ">
               You selected
               <b> {showLetterOption(userSelectedOptionSingle.index)}</b>, the
               correct answer was
               <b> {showCorrectAnswerSingle()}</b>
             </p>
-            <p className="text-base">
+            <p className="text-base text-gray-900 ">
               {questions[currentQuestion].resultHelper}
             </p>
           </div>
