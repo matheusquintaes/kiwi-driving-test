@@ -115,15 +115,15 @@ function Questions() {
               Question {currentQuestion + 1} / {questions.length}
             </h3>
 
-            <div className="bg-white shadow-md rounded-lg mb-8 p-4 flex justify-center flex-col">
+            <div className="bg-white shadow-md rounded-lg mb-8 p-4 flex flex-col items-center">
               {questions[currentQuestion].image && (
                 <img
-                  className="rounded-lg mb-4 max-w-lg"
+                  className="rounded-lg mb-4 max-w-lg items-center"
                   src={questions[currentQuestion].image.url}
                   alt=""
                 />
               )}
-              <p className="text-lg text-gray-900">
+              <p className="text-lg text-gray-900 font-bold">
                 {questions && questions[currentQuestion].questionText}
               </p>
             </div>

@@ -55,15 +55,20 @@ function Home() {
       <h2 className="text-xl font-bold mb-6">Helpful resources</h2>
       <div className="bg-white shadow-md rounded-lg mb-8">
         <div className="p-5">
-          <h3 className="text-gray-900 font-bold text-lg mb-2">
+          <h3 className="text-gray-900 font-bold text-base mb-2">
             The official New Zealand road code
           </h3>
-          <p className="text-base text-gray-700 mb-4 ">
+          <p className="text-sm text-gray-700 mb-4 ">
             The official NZ road code is a user-friendly guide to New Zealand's
             traffic law and safe driving practices.
           </p>
           <div className="inline-flex items-center ">
-            <a className="text-yellow-500 mr-2 font-bold " href="">
+            <a
+              className="text-yellow-500 mr-2 font-bold text-sm"
+              href="https://www.nzta.govt.nz/roadcode"
+              target="_blank"
+              rel="noreferrer"
+            >
               See More
             </a>
             <ArrowTopRightOnSquareIcon className="text-yellow-500 w-5 h-5" />
