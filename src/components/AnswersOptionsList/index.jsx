@@ -76,7 +76,7 @@ function AnswersOptionsList({
       !userSubmittedAnswer.submited === true &&
       userSelectedOptionSingle.id === answerOptions.id
     ) {
-      style = 'bg-yellow-200 border-2 border-yellow-500 drop-shadow-md '
+      style = 'bg-yellow-50 border-2 border-yellow-400 drop-shadow-md '
       return style
     }
 
@@ -116,7 +116,7 @@ function AnswersOptionsList({
       return style
     }
     if (arrayIndexSelected.includes(index)) {
-      style = 'bg-yellow-200 border-2 border-yellow-500 drop-shadow-md'
+      style = 'bg-yellow-50 border-2 border-yellow-400 drop-shadow-md'
       return style
     }
 
@@ -132,7 +132,7 @@ function AnswersOptionsList({
               <li className="flex" key={index}>
                 <label
                   className={
-                    'drop-shadow-md rounded-lg mb-4 p-2 w-full border-2 cursor-pointer ' +
+                    'drop-shadow-md rounded-lg mb-4 p-2 w-full border-2 cursor-pointer hover:bg-yellow-50 ' +
                     labelHighligthMultiple(answerOption, index)
                   }
                 >
@@ -156,7 +156,7 @@ function AnswersOptionsList({
               <li className="flex" key={answerOptions.id}>
                 <label
                   className={
-                    'text-gray-900 drop-shadow-md rounded-lg mb-4 p-2 w-full border-2 cursor-pointer ' +
+                    'text-gray-900 drop-shadow-md rounded-lg mb-4 p-2 w-full border-2 cursor-pointer hover:bg-yellow-50 ' +
                     labelHighligthSingle(answerOptions, index)
                   }
                 >

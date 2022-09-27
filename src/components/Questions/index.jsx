@@ -148,7 +148,7 @@ function Questions() {
             {showSubmitButton() && (
               <button
                 onClick={() => handleSubmitButtonClick()}
-                className="text-white bg-teal-500 hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-3 py-2 text-center inline-flex items-center"
+                className="btn-primary"
               >
                 Submit
               </button>
@@ -156,7 +156,7 @@ function Questions() {
             {userSubmittedAnswer.submited === true && (
               <button
                 onClick={() => handleNextButtonClick()}
-                className="text-white bg-teal-500 hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-3 py-2 text-center inline-flex items-center"
+                className="btn-primary"
               >
                 Next
               </button>
