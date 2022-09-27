@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid'
 
 import Card from '../Card'
+import Footer from '../Footer'
 
 function Home() {
   const { setGameState, setScore } = useContext(AppStateContext)
   const [subjects, setSubjects] = useState(null)
-
   useEffect(() => {
     const fetchSubjects = async () => {
       const { subjects } = await client.request(GET_SUBJECTS)
@@ -23,7 +23,7 @@ function Home() {
   }, [])
 
   return (
-    <div className="">
+    <>
       <div className="flex flex-col items-center w-full pt-6 pb-12">
         <div className="max-w-md text-center">
           <h1 className="text-gray-900 font-bold text-2xl  mb-4">
@@ -75,7 +75,8 @@ function Home() {
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   )
 }
 
