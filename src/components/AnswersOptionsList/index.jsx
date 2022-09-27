@@ -76,11 +76,16 @@ function AnswersOptionsList({
       !userSubmittedAnswer.submited === true &&
       userSelectedOptionSingle.id === answerOptions.id
     ) {
-      style = 'bg-yellow-50 border-2 border-yellow-400 drop-shadow-md '
+      style = 'bg-yellow-50 border-2 border-yellow-400 drop-shadow-md'
       return style
     }
 
-    style = 'bg-white border-transparent'
+    if (userSubmittedAnswer.submited === true) {
+      style = 'bg-white border-transparent'
+      return style
+    }
+
+    style = 'bg-white border-transparent hover:bg-yellow-50'
     return style
   }
 
@@ -120,7 +125,12 @@ function AnswersOptionsList({
       return style
     }
 
-    style = 'bg-white border-transparent'
+    if (userSubmittedAnswer.submited === true) {
+      style = 'bg-white border-transparent'
+      return style
+    }
+
+    style = 'bg-white border-transparent hover:bg-yellow-50'
     return style
   }
 
@@ -132,7 +142,7 @@ function AnswersOptionsList({
               <li className="flex" key={index}>
                 <label
                   className={
-                    'drop-shadow-md rounded-lg mb-4 p-2 w-full border-2 cursor-pointer hover:bg-yellow-50 ' +
+                    'drop-shadow-md rounded-lg mb-4 p-2 w-full border-2 cursor-pointer ' +
                     labelHighligthMultiple(answerOption, index)
                   }
                 >
@@ -156,7 +166,7 @@ function AnswersOptionsList({
               <li className="flex" key={answerOptions.id}>
                 <label
                   className={
-                    'text-gray-900 drop-shadow-md rounded-lg mb-4 p-2 w-full border-2 cursor-pointer hover:bg-yellow-50 ' +
+                    'text-gray-900 drop-shadow-md rounded-lg mb-4 p-2 w-full border-2 cursor-pointer ' +
                     labelHighligthSingle(answerOptions, index)
                   }
                 >
