@@ -121,6 +121,9 @@ function Questions() {
                   className="rounded-lg mb-4 max-w-lg items-center"
                   src={questions[currentQuestion].image.url}
                   alt=""
+                  width={questions[currentQuestion].image.width}
+                  height={questions[currentQuestion].image.height}
+                  loading="lazy"
                 />
               )}
               <p className="text-lg text-gray-900 font-bold">

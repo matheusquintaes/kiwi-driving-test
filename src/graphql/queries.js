@@ -27,6 +27,8 @@ export const GET_QUESTIONS_BY_SUBJECT = gql`
       }
       image {
         url
+        height
+        width
       }
     }
   }
