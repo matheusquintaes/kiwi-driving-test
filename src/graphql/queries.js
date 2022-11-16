@@ -9,6 +9,8 @@ export const GET_SUBJECTS = gql`
       description
       image {
         url
+        height
+        width
       }
     }
   }

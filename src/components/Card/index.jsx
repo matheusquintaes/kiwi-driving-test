@@ -9,6 +9,9 @@ function Card({ title, description, image }) {
           <img
             className="h-32 w-full object-cover rounded-t-lg"
             src={image.url}
+            width={image.width}
+            height={image.height}
+            loading="lazy"
           />
           <div className="p-5">
             <h3 className="text-gray-900 font-bold text-lg mb-2">{title}</h3>
