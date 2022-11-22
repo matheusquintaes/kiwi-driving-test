@@ -18,7 +18,7 @@ export const GET_SUBJECTS = gql`
 
 export const GET_QUESTIONS_BY_SUBJECT = gql`
   query getQuestionsBySubject($title: String!) {
-    questions(where: { subjects_every: { title: $title } }) {
+    questions(where: { subjects_some: { title: $title } }) {
       questionText
       multipleAnswer
       resultHelper
