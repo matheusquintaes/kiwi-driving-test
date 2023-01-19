@@ -101,6 +101,7 @@ function Questions() {
       setQuestions(shuffleArray(questions))
       setLoading(false)
     }
+
     fetchQuestions(subject)
   }, [])
 
