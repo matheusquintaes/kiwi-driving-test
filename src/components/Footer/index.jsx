@@ -11,7 +11,7 @@ function Footer() {
         <a
           className="group"
           aria-label="KiwiDriving on GitHub"
-          href="https://github.com"
+          href="https://github.com/matheusquintaes/kiwi-driving-test"
         >
           <svg
             aria-hidden="true"
